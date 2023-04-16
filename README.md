@@ -20,6 +20,5 @@ COMMAND
   info     show the information of the given shortened urls.
   list     list the shortened urls and the corresponding urls.
   update   update corresponding url of the given shortened url.
-  ##
 
 
