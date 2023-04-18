@@ -17,12 +17,12 @@ JSON
 
 # Usage
 ## Command references
-"""
+'''
  Usage yubs [Option]
  [Option]
   -h, --help            print the help message and exit.
   -V, --version         print the version and exit.
-"""
+'''
 # インストール方法
    
 # このプロジェクトについて
