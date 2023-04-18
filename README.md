@@ -1,42 +1,39 @@
 # YUbS
+![スクリーンショット-2023-04-11-14 15 18](https://user-images.githubusercontent.com/130431199/232657676-88e59155-dd2c-4991-955b-0dbdc9cffa1d.svg)
 
-入力したURLを短縮URLにする。
+コマンドラインで入力したURLを短縮URLにする。
 
-##
+# 概要
 
-Bit.lyは入力したURLを短縮URLにできるWebapiのサービスであるがサイトにわざわざ移動し、URLを入力してなど、すこし面倒である。
+Bit.lyは入力したURLを短縮URLにできるWebapiのサービスであるがサイトにわざわざ移動し、URLを入力してなど、
+
+すこし面倒である。
 
 そこでCLIでBit.lyを利用することでよりスムーズにURLを短縮できるようにした。
 
-##
-出力形式　　
+# 出力形式　　
 
 JSON
 
-##
+# Usage
 
-surl [GLOBAL_OPTS] <COMMAND>
-  
-GLOBAL_OPTS
-  
-  -t, --token <TOKEN>   specify the API token.
-  
-  -v, --verbose         verbose mode.
-  
   -h, --help            print the help message and exit.
   
   -V, --version         print the version and exit.
+
+#インストール方法
+   
+#このプロジェクトについて
+開発者 : NishioSoichiro
+
+ライセンス : GPlv3
+#
+アイコン:![スクリーンショット-2023-04-11-14 15 18](https://user-images.githubusercontent.com/130431199/232657676-88e59155-dd2c-4991-955b-0dbdc9cffa1d.svg)
+# 
+名前の由来 : 「あなたのURLをより短くする」の英語の単語の頭文字をそれぞれ取り出した。すこし造語っぽいが覚えやすいのではないかと思いこの名前とした。
+
+バージョン : 0.0.1 2023/4/18
   
-COMMAND
   
-  create   create new shorten url from the given url.
-  
-  remove   remove the given shortened urls.
-  
-  info     show the information of the given shortened urls.
-  
-  list     list the shortened urls and the corresponding urls.
-  
-  update   update corresponding url of the given shortened url.
 
 
