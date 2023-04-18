@@ -16,14 +16,16 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 JSON
 
 # Usage
-
+## Command references
+"""
+ Usage yubs [Option]
+ [Option]
   -h, --help            print the help message and exit.
-  
   -V, --version         print the version and exit.
-
-#インストール方法
+"""
+# インストール方法
    
-#このプロジェクトについて
+# このプロジェクトについて
 開発者 : NishioSoichiro
 
 ライセンス : GPlv3
