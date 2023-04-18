@@ -18,7 +18,7 @@ JSON
 # Usage
 ## Command references
 
-     Usage yubs [OPTION]  
+     Usage yubs <URL> [OPTION]  
      OPTION:  
      -h, --help            print the help message and exit.  
      -V, --version         print the version and exit.  
