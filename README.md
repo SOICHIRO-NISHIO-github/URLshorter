@@ -35,7 +35,9 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 
 名前の由来 : 「Your URL be shorter(あなたのURLをより短くする)」の英語の単語の頭文字をそれぞれ取り出した。すこし造語っぽいが覚えやすいのではないかと思いこの名前とした。
 
-バージョン : 0.0.0 2023/4/18
+バージョン : 0.0.0 2023/4/18 
+
+<img alt="GitHub" src="https://img.shields.io/badge/YUbS-URL__shorter-red"> <img alt="Github" src="https://img.shields.io/badge/Developer-Soichiro%20Nishio-blue">
   
   
 
