@@ -27,7 +27,7 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 
 開発者 : NishioSoichiro
 
-ライセンス : GPlv3
+ライセンス : <img alt="GitHub" src="https://img.shields.io/github/license/SOICHIRO-NISHIO-github/YUbS">
 
 アイコン:
 
