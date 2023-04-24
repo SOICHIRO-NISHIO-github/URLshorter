@@ -27,6 +27,8 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 
 開発者 : NishioSoichiro
 
+使用言語：GO
+
 ライセンス : <img alt="GitHub" src="https://img.shields.io/github/license/SOICHIRO-NISHIO-github/YUbS">
 
 アイコン:
@@ -37,7 +39,7 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 
 バージョン : 0.0.0 2023/4/18 
 
-<img alt="GitHub" src="https://img.shields.io/badge/YUbS-URL__shorter-red"> <img alt="Github" src="https://img.shields.io/badge/Developer-Soichiro%20Nishio-blue">
+<img alt="GitHub" src="https://img.shields.io/badge/YUbS-URL__shorter-red"> <img alt="Github" src="https://img.shields.io/badge/Developer-Soichiro%20Nishio-blue"> <img alt="GitHub" src=https://img.shields.io/badge/Langage-GO-brightgreen> <img alt="GitHub" src="https://img.shields.io/badge/Version-0.0.0-yellow"> <img alt="GitHub" src="https://img.shields.io/github/license/SOICHIRO-NISHIO-github/YUbS">
   
   
 
