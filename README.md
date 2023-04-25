@@ -1,6 +1,7 @@
 # YUbS
 
-<a href="https://codebeat.co/projects/github-com-soichiro-nishio-github-yubs-main"><img alt="codebeat badge" src="https://codebeat.co/badges/ee6d2728-d9ca-4195-bf4e-0b533db74bef" /></a>
+<a href="https://codebeat.co/projects/github-com-soichiro-nishio-github-yubs-main"><img alt="codebeat badge" src="https://codebeat.co/badges/ee6d2728-d9ca-4195-bf4e-0b533db74bef" /></a> 
+<img alt="GitHub" src="https://goreportcard.com/badge/github.com/SOICHIRO-NISHIO-github/YUbS">
 
 <img width="297" alt="icontouka" src="https://user-images.githubusercontent.com/130431199/233415684-aae0eb68-a13c-4d33-ac68-4ced5586357a.png">
 
@@ -42,7 +43,7 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 バージョン : 0.0.0 2023/4/18 
 
 <img alt="GitHub" src="https://img.shields.io/badge/YUbS-URL__shorter-red"> <img alt="Github" src="https://img.shields.io/badge/Developer-Soichiro%20Nishio-blue"> <img alt="GitHub" src=https://img.shields.io/badge/Langage-GO-brightgreen> <img alt="GitHub" src="https://img.shields.io/badge/Version-0.0.0-yellow"> <img alt="GitHub" src="https://img.shields.io/github/license/SOICHIRO-NISHIO-github/YUbS">
-<a href="https://codebeat.co/projects/github-com-soichiro-nishio-github-yubs-main"><img alt="codebeat badge" src="https://codebeat.co/badges/ee6d2728-d9ca-4195-bf4e-0b533db74bef" /></a>
+
   
   
 
