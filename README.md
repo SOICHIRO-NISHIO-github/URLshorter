@@ -1,5 +1,7 @@
 # YUbS
 
+<a href="https://codebeat.co/projects/github-com-soichiro-nishio-github-yubs-main"><img alt="codebeat badge" src="https://codebeat.co/badges/ee6d2728-d9ca-4195-bf4e-0b533db74bef" /></a>
+
 <img width="297" alt="icontouka" src="https://user-images.githubusercontent.com/130431199/233415684-aae0eb68-a13c-4d33-ac68-4ced5586357a.png">
 
 コマンドラインで入力したURLを短縮URLにする。
