@@ -12,8 +12,8 @@ coverage.out:
 
 docker: yubs
 #	docker build -t ghcr.io/tamada/urleap:$(VERSION) -t ghcr.io/tamada/urleap:latest .
-	docker buildx build -t ghcr.io/SOICHIRO-NISHIO-github/YUbS:$(VERSION) \
-		-t ghcr.io/SOICHIRO-NISHIO-github/YUbS:latest --platform=linux/arm64/v8,linux/amd64 --push .
+	docker buildx build -t ghcr.io/SOICHIRO-NISHIO-github/yubs:$(VERSION) \
+		-t ghcr.io/SOICHIRO-NISHIO-github/yubs:latest --platform=linux/arm64/v8,linux/amd64 --push .
 
 # refer from https://pod.hatenablog.com/entry/2017/06/13/150342
 define _createDist
