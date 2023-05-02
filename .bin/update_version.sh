@@ -23,6 +23,6 @@ done
 
 # sed "s/    version = \".*\"/    version = \"${VERSION}\"/g" docs/config.toml > a ; mv a docs/config.toml
 sed "s/VERSION := .*/VERSION := ${VERSION}/g" Makefile > a && mv a Makefile
-sed "s/const VERSION = \".*\"/const VERSION = \"${VERSION}\"/g" cmd/YUbS/main.go > a && mv a cmd/YUbS/main.go
+sed "s/const VERSION = \".*\"/const VERSION = \"${VERSION}\"/g" cmd/yubs/main.go > a && mv a cmd/yubs/main.go
 
 echo "Replace version to \"${VERSION}\""
