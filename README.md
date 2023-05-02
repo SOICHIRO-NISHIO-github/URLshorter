@@ -46,6 +46,8 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 
 <img alt="GitHub" src="https://img.shields.io/badge/YUbS-URL__shorter-red"> <img alt="Github" src="https://img.shields.io/badge/Developer-Soichiro%20Nishio-blue"> <img alt="GitHub" src=https://img.shields.io/badge/Langage-GO-brightgreen> <img alt="GitHub" src="https://img.shields.io/badge/Version-0.0.0-yellow"> <img alt="GitHub" src="https://img.shields.io/github/license/SOICHIRO-NISHIO-github/YUbS">
 
+website:https://soichiro-nishio-github.github.io/yubs/
+
   
   
 
