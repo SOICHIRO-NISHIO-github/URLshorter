@@ -1,7 +1,7 @@
 # YUbS
 
 <a href="https://codebeat.co/projects/github-com-soichiro-nishio-github-yubs-main"><img alt="codebeat badge" src="https://codebeat.co/badges/ee6d2728-d9ca-4195-bf4e-0b533db74bef" /></a> 
-<img alt="GitHub" src="https://goreportcard.com/badge/github.com/SOICHIRO-NISHIO-github/YUbS">
+[![Go Report Card](https://goreportcard.com/badge/github.com/SOICHIRO-NISHIO-github/YUbS)](https://goreportcard.com/report/github.com/SOICHIRO-NISHIO-github/YUbS)
 <a href='https://coveralls.io/github/SOICHIRO-NISHIO-github/YUbS?branch=main'><img src='https://coveralls.io/repos/github/SOICHIRO-NISHIO-github/YUbS/badge.svg?branch=main' alt='Coverage Status' /></a>
 
 
