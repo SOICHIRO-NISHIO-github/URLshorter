@@ -3,7 +3,7 @@ VERSION := 0.1.16
 NAME := yubs
 DIST := $(NAME)-$(VERSION)
 
-urleap: coverage.out
+yubs: coverage.out
 	go build -o urleap $(PACKAGE_LIST)
 
 coverage.out:
