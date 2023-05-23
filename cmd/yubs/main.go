@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-
 	flag "github.com/spf13/pflag"
 	"github.com/SOICHIRO-NISHIO-github/yubs"
 )

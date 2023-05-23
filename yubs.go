@@ -1,11 +1,11 @@
 package yubs
 
-impoort "fmt"
+import "fmt"
 
 type ShortenUrl struct{
-	Shorten string 'json:"link"'
-	Original string 'json:"long_url"'
-	IsDeleted bool 'json:"is_deleted"'
+	Shorten string `json:"link"`
+	Original string `json:"long_url"`
+	IsDeleted bool `json:"is_deleted"`
 	Group  string 
 }
 
