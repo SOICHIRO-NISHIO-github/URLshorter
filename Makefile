@@ -4,7 +4,7 @@ NAME := yubs
 DIST := $(NAME)-$(VERSION)
 
 yubs: coverage.out
-	go build -o urleap $(PACKAGE_LIST)
+	go build -o yubs $(PACKAGE_LIST)
 
 coverage.out:
 	go test -covermode=count \
