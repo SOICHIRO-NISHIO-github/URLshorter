@@ -20,10 +20,12 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 # Usage
 ## Command references
 
-     Usage yubs <URL> [OPTION]  
-     OPTION:  
-     -h, --help            ヘルプメッセージを表示する  
-     -V, --version         バージョンを表示する
+     Usage yubs [OPTION] [URL]  
+     OPTION:
+     -t, --token　[TOKEN]    bitlyのアクセストークンを指定する。
+     -h, --help            ヘルプメッセージを表示する。
+     -v, --version         versionを表示する。
+     -d, --delete          短縮URLの削除。
 
 # インストール方法
      brew install yubs 
