@@ -20,8 +20,7 @@ func versionString(args []string) string {
 }
 
 /*
-helpMessage prints the help message.
-This function is used in the small tests, so it may be called with a zero-length slice.
+ヘルプメッセージの構築
 */
 func helpMessage(args []string) string {
 	prog := "yubs"
@@ -30,16 +29,12 @@ func helpMessage(args []string) string {
 	}
 	return fmt.Sprintf(`%s [OPTIONS] [URLs...]
 OPTIONS
-    -t, --token <TOKEN>      specify the token for the service. This option is mandatory.
-    -q, --qrcode <FILE>      include QR-code of the URL in the output.
-    -c, --config <CONFIG>    specify the configuration file.
-    -g, --group <GROUP>      specify the group name for the service. Default is "yubs"
-    -d, --delete             delete the specified shorten URL.
-    -h, --help               print this mesasge and exit.
-    -v, --version            print the version and exit.
+    -t, --token <TOKEN>      アクセストークンを入力してください.
+    -d, --delete             指定された短縮URLの削除.
+    -h, --help               ヘルプメッセージの表示.
+    -v, --version            versionの表示.
 ARGUMENT
-    URL     specify the url for shortening. this arguments accept multiple values.
-            if no arguments were specified, yubs prints the list of available shorten urls.`, prog)
+    URL     コマンドラインで入力したURLを短縮URLにする。`, prog)
 }
 
 type yubsError struct {
@@ -93,25 +88,21 @@ func (opts *options) mode(args []string) yubs.Mode {
 }
 
 /*
-Define the options and return the pointer to the options and the pointer to the flagset.
+オプションを定義し、オプションへのポインタとフラグセットへのポインタを返します。
 */
 func buildOptions(args []string) (*options, *flag.FlagSet) {
 	opts := newOptions()
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	flags.Usage = func() { fmt.Println(helpMessage(args)) }
-	flags.StringVarP(&opts.runOpt.token, "token", "t", "", "specify the token for the service. This option is mandatory.")
-	flags.StringVarP(&opts.runOpt.qrcode, "qrcode", "q", "", "include QR-code of the URL in the output.")
-	flags.StringVarP(&opts.runOpt.config, "config", "c", "", "specify the configuration file.")
-	flags.StringVarP(&opts.runOpt.group, "group", "g", "", "specify the group name for the service. Default is \"yubs\"")
-	flags.BoolVarP(&opts.flagSet.listGroupFlag, "list-group", "L", false, "list the groups. This is hidden option.")
-	flags.BoolVarP(&opts.flagSet.deleteFlag, "delete", "d", false, "delete the specified shorten URL.")
-	flags.BoolVarP(&opts.flagSet.helpFlag, "help", "h", false, "print this mesasge and exit.")
-	flags.BoolVarP(&opts.flagSet.versionFlag, "version", "v", false, "print the version and exit.")
+	flags.StringVarP(&opts.runOpt.token, "token", "t", "", "Bitly-apiのアクセストークンを入力してください.")
+	flags.BoolVarP(&opts.flagSet.listGroupFlag, "list-group", "L", false, "list the groups. 隠しコマンド.")
+	flags.BoolVarP(&opts.flagSet.helpFlag, "help", "h", false, "ヘルプメッセージの表示.")
+	flags.BoolVarP(&opts.flagSet.versionFlag, "version", "v", false, "versionの表示.")
 	return opts, flags
 }
 
 /*
-parseOptions parses options from the given command line arguments.
+parseOptions は、指定されたコマンド ライン引数からオプションを解析します。
 */
 func parseOptions(args []string) (*options, []string, *yubsError) {
 	opts, flags := buildOptions(args)
@@ -132,6 +123,7 @@ func parseOptions(args []string) (*options, []string, *yubsError) {
 
 func shortenEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
 	result, err := bitly.Shorten(config, url)
+	fmt.Println("main_1")
 	if err != nil {
 		return err
 	}
@@ -140,10 +132,12 @@ func shortenEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
 }
 
 func deleteEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
+	fmt.Println("main_2")
 	return bitly.Delete(config, url)
 }
 
 func listUrls(bitly *yubs.Bitly, config *yubs.Config) error {
+	fmt.Println("main_3")
 	urls, err := bitly.List(config)
 	if err != nil {
 		return err
@@ -156,6 +150,7 @@ func listUrls(bitly *yubs.Bitly, config *yubs.Config) error {
 
 func listGroups(bitly *yubs.Bitly, config *yubs.Config) error {
 	groups, err := bitly.Groups(config)
+	fmt.Println("main_4")
 	if err != nil {
 		return err
 	}
