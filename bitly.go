@@ -1,4 +1,5 @@
 package yubs
+
 import (
 	"encoding/json"
 	"fmt"
