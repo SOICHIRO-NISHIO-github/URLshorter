@@ -1,5 +1,5 @@
 PACKAGE_LIST := $(shell go list ./...)
-VERSION := 0.1.16
+VERSION := 0.1.15
 NAME := yubs
 DIST := $(NAME)-$(VERSION)
 
@@ -11,7 +11,7 @@ coverage.out:
 		-coverprofile=coverage.out $(PACKAGE_LIST)
 
 docker: yubs
-#	docker build -t ghcr.io/tamada/urleap:$(VERSION) -t ghcr.io/tamada/urleap:latest .
+#	docker build -t ghcr.io/SOICHIRO-NISHIO-github/yubs:$(VERSION) -t ghcr.io/SOICHIRO-NISHIO-github/yubs:latest .
 	docker buildx build -t ghcr.io/SOICHIRO-NISHIO-github/yubs:$(VERSION) \
 		-t ghcr.io/SOICHIRO-NISHIO-github/yubs:latest --platform=linux/arm64/v8,linux/amd64 --push .
 
