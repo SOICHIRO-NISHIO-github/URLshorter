@@ -1,4 +1,4 @@
-package urleap
+package yubs
 
 type Config struct {
 	Token   string
