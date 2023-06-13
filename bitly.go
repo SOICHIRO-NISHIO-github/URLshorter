@@ -1,4 +1,5 @@
 package yubs
+
 import (
 	"encoding/json"
 	"fmt"
@@ -102,7 +103,7 @@ func removeDeletedLinks(links []*ShortenUrl, group string) []*ShortenUrl {
 	}
 	return result
 }
-
+//正常に動作するとここがうごく
 func (bitly *Bitly) Shorten(config *Config, url string) (*ShortenUrl, error) {
 	reader := strings.NewReader(fmt.Sprintf(`{"long_url": "%s", "group_guid": "%s"}`, url, bitly.group))
 	request, err := http.NewRequest("POST", bitly.buildUrl("shorten"), reader)
@@ -113,9 +114,10 @@ func (bitly *Bitly) Shorten(config *Config, url string) (*ShortenUrl, error) {
 	if err != nil {
 		return nil, err
 	}
+	//fmt.Println(data)
 	return handleShortenResponse(data)
 }
-
+//結果の表示
 func handleShortenResponse(data []byte) (*ShortenUrl, error) {
 	result := &ShortenUrl{}
 	fmt.Println("result:", string(data))

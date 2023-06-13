@@ -12,7 +12,7 @@ import (
 const VERSION = "0.1.16"
 
 func versionString(args []string) string {
-	prog := "urleap"
+	prog := "yubs"
 	if len(args) > 0 {
 		prog = filepath.Base(args[0])
 	}
@@ -20,34 +20,28 @@ func versionString(args []string) string {
 }
 
 /*
-helpMessage prints the help message.
-This function is used in the small tests, so it may be called with a zero-length slice.
+ヘルプメッセージの構築
 */
 func helpMessage(args []string) string {
-	prog := "urleap"
+	prog := "yubs"
 	if len(args) > 0 {
 		prog = filepath.Base(args[0])
 	}
 	return fmt.Sprintf(`%s [OPTIONS] [URLs...]
 OPTIONS
-    -t, --token <TOKEN>      specify the token for the service. This option is mandatory.
-    -q, --qrcode <FILE>      include QR-code of the URL in the output.
-    -c, --config <CONFIG>    specify the configuration file.
-    -g, --group <GROUP>      specify the group name for the service. Default is "urleap"
-    -d, --delete             delete the specified shorten URL.
-    -h, --help               print this mesasge and exit.
-    -v, --version            print the version and exit.
+    -t, --token <TOKEN>      アクセストークンを入力してください.
+    -h, --help               ヘルプメッセージの表示.
+    -v, --version            versionの表示.
 ARGUMENT
-    URL     specify the url for shortening. this arguments accept multiple values.
-            if no arguments were specified, urleap prints the list of available shorten urls.`, prog)
+    URL     コマンドラインで入力したURLを短縮URLにする。`, prog)
 }
 
-type UrleapError struct {
+type yubsError struct {
 	statusCode int
 	message    string
 }
 
-func (e UrleapError) Error() string {
+func (e yubsError) Error() string {
 	return e.message
 }
 
@@ -56,6 +50,7 @@ type flags struct {
 	listGroupFlag bool
 	helpFlag      bool
 	versionFlag   bool
+	//writeFlag	  bool
 }
 
 type runOpts struct {
@@ -77,61 +72,60 @@ func newOptions() *options {
 	return &options{runOpt: &runOpts{}, flagSet: &flags{}}
 }
 
-func (opts *options) mode(args []string) urleap.Mode {
+func (opts *options) mode(args []string) yubs.Mode {
 	switch {
+	/*
 	case opts.flagSet.listGroupFlag:
-		return urleap.ListGroup
+		return yubs.ListGroup
 	case len(args) == 0:
-		return urleap.List
+		return yubs.List
 	case opts.flagSet.deleteFlag:
-		return urleap.Delete
+		return yubs.Delete
 	case opts.runOpt.qrcode != "":
-		return urleap.QRCode
+		return yubs.QRCode
+	*/
 	default:
-		return urleap.Shorten
+		return yubs.Shorten
 	}
 }
 
 /*
-Define the options and return the pointer to the options and the pointer to the flagset.
+オプションを定義し、オプションへのポインタとフラグセットへのポインタを返します。
 */
 func buildOptions(args []string) (*options, *flag.FlagSet) {
 	opts := newOptions()
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	flags.Usage = func() { fmt.Println(helpMessage(args)) }
-	flags.StringVarP(&opts.runOpt.token, "token", "t", "", "specify the token for the service. This option is mandatory.")
-	flags.StringVarP(&opts.runOpt.qrcode, "qrcode", "q", "", "include QR-code of the URL in the output.")
-	flags.StringVarP(&opts.runOpt.config, "config", "c", "", "specify the configuration file.")
-	flags.StringVarP(&opts.runOpt.group, "group", "g", "", "specify the group name for the service. Default is \"urleap\"")
-	flags.BoolVarP(&opts.flagSet.listGroupFlag, "list-group", "L", false, "list the groups. This is hidden option.")
-	flags.BoolVarP(&opts.flagSet.deleteFlag, "delete", "d", false, "delete the specified shorten URL.")
-	flags.BoolVarP(&opts.flagSet.helpFlag, "help", "h", false, "print this mesasge and exit.")
-	flags.BoolVarP(&opts.flagSet.versionFlag, "version", "v", false, "print the version and exit.")
+	flags.StringVarP(&opts.runOpt.token, "token", "t", "", "Bitly-apiのアクセストークンを入力してください.")
+	//flags.BoolVarP(&opts.flagSet.listGroupFlag, "list-group", "L", false, "list the groups. 隠しコマンド.")
+	flags.BoolVarP(&opts.flagSet.helpFlag, "help", "h", false, "ヘルプメッセージの表示.")
+	flags.BoolVarP(&opts.flagSet.versionFlag, "version", "v", false, "versionの表示.")
 	return opts, flags
 }
 
 /*
-parseOptions parses options from the given command line arguments.
+parseOptions は、指定されたコマンド ライン引数からオプションを解析します。
 */
-func parseOptions(args []string) (*options, []string, *UrleapError) {
+func parseOptions(args []string) (*options, []string, *yubsError) {
 	opts, flags := buildOptions(args)
 	flags.Parse(args[1:])
 	if opts.flagSet.helpFlag {
 		fmt.Println(helpMessage(args))
-		return nil, nil, &UrleapError{statusCode: 0, message: ""}
+		return nil, nil, &yubsError{statusCode: 0, message: ""}
 	}
 	if opts.flagSet.versionFlag {
 		fmt.Println(versionString(args))
-		return nil, nil, &UrleapError{statusCode: 0, message: ""}
+		return nil, nil, &yubsError{statusCode: 0, message: ""}
 	}
 	if opts.runOpt.token == "" {
-		return nil, nil, &UrleapError{statusCode: 3, message: "no token was given"}
+		return nil, nil, &yubsError{statusCode: 3, message: "no token was given"}
 	}
 	return opts, flags.Args(), nil
 }
 
-func shortenEach(bitly *urleap.Bitly, config *urleap.Config, url string) error {
+func shortenEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
 	result, err := bitly.Shorten(config, url)
+	fmt.Println("main_1")
 	if err != nil {
 		return err
 	}
@@ -139,11 +133,13 @@ func shortenEach(bitly *urleap.Bitly, config *urleap.Config, url string) error {
 	return nil
 }
 
-func deleteEach(bitly *urleap.Bitly, config *urleap.Config, url string) error {
+func deleteEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
+	fmt.Println("main_2")
 	return bitly.Delete(config, url)
 }
 
-func listUrls(bitly *urleap.Bitly, config *urleap.Config) error {
+func listUrls(bitly *yubs.Bitly, config *yubs.Config) error {
+	fmt.Println("main_3")
 	urls, err := bitly.List(config)
 	if err != nil {
 		return err
@@ -154,8 +150,9 @@ func listUrls(bitly *urleap.Bitly, config *urleap.Config) error {
 	return nil
 }
 
-func listGroups(bitly *urleap.Bitly, config *urleap.Config) error {
+func listGroups(bitly *yubs.Bitly, config *yubs.Config) error {
 	groups, err := bitly.Groups(config)
+	fmt.Println("main_4")
 	if err != nil {
 		return err
 	}
@@ -165,7 +162,7 @@ func listGroups(bitly *urleap.Bitly, config *urleap.Config) error {
 	return nil
 }
 
-func performImpl(args []string, executor func(url string) error) *UrleapError {
+func performImpl(args []string, executor func(url string) error) *yubsError {
 	for _, url := range args {
 		err := executor(url)
 		if err != nil {
@@ -175,22 +172,24 @@ func performImpl(args []string, executor func(url string) error) *UrleapError {
 	return nil
 }
 
-func perform(opts *options, args []string) *UrleapError {
-	bitly := urleap.NewBitly(opts.runOpt.group)
-	config := urleap.NewConfig(opts.runOpt.config, opts.mode(args))
+func perform(opts *options, args []string) *yubsError {
+	bitly := yubs.NewBitly(opts.runOpt.group)
+	config := yubs.NewConfig(opts.runOpt.config, opts.mode(args))
 	config.Token = opts.runOpt.token
 	switch config.RunMode {
-	case urleap.List:
+	/*
+	case yubs.List:
 		err := listUrls(bitly, config)
 		return makeError(err, 1)
-	case urleap.ListGroup:
+	case yubs.ListGroup:
 		err := listGroups(bitly, config)
 		return makeError(err, 2)
-	case urleap.Delete:
+	case yubs.Delete:
 		return performImpl(args, func(url string) error {
 			return deleteEach(bitly, config, url)
 		})
-	case urleap.Shorten:
+	*/
+	case yubs.Shorten:
 		return performImpl(args, func(url string) error {
 			return shortenEach(bitly, config, url)
 		})
@@ -198,15 +197,15 @@ func perform(opts *options, args []string) *UrleapError {
 	return nil
 }
 
-func makeError(err error, status int) *UrleapError {
+func makeError(err error, status int) *yubsError {
 	if err == nil {
 		return nil
 	}
-	ue, ok := err.(*UrleapError)
+	ue, ok := err.(*yubsError)
 	if ok {
 		return ue
 	}
-	return &UrleapError{statusCode: status, message: err.Error()}
+	return &yubsError{statusCode: status, message: err.Error()}
 }
 
 func goMain(args []string) int {
