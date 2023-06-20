@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>yubs-短縮URL on yubs - 短縮URLを作ろう</title>
+    <link>https://soichiro-nishio-github.github.io/yubs/</link>
+    <description>Recent content in yubs-短縮URL on yubs - 短縮URLを作ろう</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://soichiro-nishio-github.github.io/yubs/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
