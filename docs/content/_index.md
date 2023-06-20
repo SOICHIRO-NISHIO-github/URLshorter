@@ -1,4 +1,7 @@
-
++++
+date = 2023-06-19
+title = "yubs-短縮URL"
++++
 
 # YUbS
 

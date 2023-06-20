@@ -103,7 +103,7 @@ func removeDeletedLinks(links []*ShortenUrl, group string) []*ShortenUrl {
 	}
 	return result
 }
-
+//正常に動作するとここがうごく
 func (bitly *Bitly) Shorten(config *Config, url string) (*ShortenUrl, error) {
 	reader := strings.NewReader(fmt.Sprintf(`{"long_url": "%s", "group_guid": "%s"}`, url, bitly.group))
 	request, err := http.NewRequest("POST", bitly.buildUrl("shorten"), reader)
@@ -114,9 +114,10 @@ func (bitly *Bitly) Shorten(config *Config, url string) (*ShortenUrl, error) {
 	if err != nil {
 		return nil, err
 	}
+	//fmt.Println(data)
 	return handleShortenResponse(data)
 }
-
+//結果の表示
 func handleShortenResponse(data []byte) (*ShortenUrl, error) {
 	result := &ShortenUrl{}
 	fmt.Println("result:", string(data))
@@ -139,7 +140,7 @@ func findGroup(data []byte) (string, error) {
 	index := strings.LastIndex(uri, "/")
 	return uri[index+1:], err
 }
-
+/*
 func (bitly *Bitly) Delete(config *Config, shortenURL string) error {
 	request, err := http.NewRequest("DELETE", bitly.buildUrl("bitlinks/"+strings.TrimPrefix(shortenURL, "https://")), nil)
 	if err != nil {
@@ -152,6 +153,7 @@ func (bitly *Bitly) Delete(config *Config, shortenURL string) error {
 func (bitly *Bitly) QRCode(config *Config, shortenURL string) ([]byte, error) {
 	return []byte{}, fmt.Errorf("not implement yet")
 }
+*/
 
 func sendRequest(request *http.Request, config *Config) ([]byte, error) {
 	response, err := sendRequestImpl(request, config)

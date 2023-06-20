@@ -16,6 +16,6 @@ func (surl *ShortenUrl) String() string{
 type URLShortener interface{
 	List(config *Config) ([]*ShortenUrl, error)
 	Shorten(config *Config, url string) (*ShortenUrl, error)
-	Delete(config *Config, shortenURL string) error
-	QRCode(config *Config, shortenURL string) ([]byte, error)
+	//Delete(config *Config, shortenURL string) error
+	//QRCode(config *Config, shortenURL string) ([]byte, error)
 }

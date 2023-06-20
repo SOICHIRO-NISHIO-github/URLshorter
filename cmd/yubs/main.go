@@ -29,7 +29,6 @@ func helpMessage(args []string) string {
 	return fmt.Sprintf(`%s [OPTIONS] [URLs...]
 OPTIONS
     -t, --token <TOKEN>      アクセストークンを入力してください.
-    -d, --delete             指定された短縮URLの削除.
     -h, --help               ヘルプメッセージの表示.
     -v, --version            versionの表示.
 ARGUMENT
@@ -46,7 +45,7 @@ func (e yubsError) Error() string {
 }
 
 type flags struct {
-	deleteFlag    bool
+	//deleteFlag    bool
 	listGroupFlag bool
 	helpFlag      bool
 	versionFlag   bool
@@ -54,7 +53,7 @@ type flags struct {
 
 type runOpts struct {
 	token  string
-	qrcode string
+	//qrcode string
 	config string
 	group  string
 }
@@ -77,10 +76,12 @@ func (opts *options) mode(args []string) yubs.Mode {
 		return yubs.ListGroup
 	case len(args) == 0:
 		return yubs.List
+	/*
 	case opts.flagSet.deleteFlag:
 		return yubs.Delete
 	case opts.runOpt.qrcode != "":
 		return yubs.QRCode
+	*/
 	default:
 		return yubs.Shorten
 	}
@@ -115,7 +116,7 @@ func parseOptions(args []string) (*options, []string, *yubsError) {
 		return nil, nil, &yubsError{statusCode: 0, message: ""}
 	}
 	if opts.runOpt.token == "" {
-		return nil, nil, &yubsError{statusCode: 3, message: "no token was given"}
+		return nil, nil, &yubsError{statusCode: 3, message: "アクセストークンを入力してください。"}
 	}
 	return opts, flags.Args(), nil
 }
@@ -126,17 +127,19 @@ func shortenEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println("短縮URLは")
 	fmt.Println(result)
 	return nil
 }
-
+/*
 func deleteEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
 	fmt.Println("main_2")
 	return bitly.Delete(config, url)
 }
+*/
 
 func listUrls(bitly *yubs.Bitly, config *yubs.Config) error {
-	fmt.Println("main_3")
+	fmt.Println("あなたのアカウントの短縮URLは")
 	urls, err := bitly.List(config)
 	if err != nil {
 		return err
@@ -180,10 +183,12 @@ func perform(opts *options, args []string) *yubsError {
 	case yubs.ListGroup:
 		err := listGroups(bitly, config)
 		return makeError(err, 2)
+	/*
 	case yubs.Delete:
 		return performImpl(args, func(url string) error {
 			return deleteEach(bitly, config, url)
 		})
+	*/
 	case yubs.Shorten:
 		return performImpl(args, func(url string) error {
 			return shortenEach(bitly, config, url)
