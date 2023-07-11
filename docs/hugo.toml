@@ -1,6 +1,0 @@
-baseURL = "https://soichiro-nishio-github.github.io/yubs/"
-languageCode = "ja-jp"
-themesDir = "themes"
-title = "yubs - 短縮URLを作ろう"
-#theme = "hugo-whisper-theme”
-#defaultContentLanguage = "ja"

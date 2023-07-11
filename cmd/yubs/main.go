@@ -49,7 +49,10 @@ type flags struct {
 	listGroupFlag bool
 	helpFlag      bool
 	versionFlag   bool
+	completions   bool
 }
+
+var completions bool
 
 type runOpts struct {
 	token  string
@@ -98,6 +101,8 @@ func buildOptions(args []string) (*options, *flag.FlagSet) {
 	flags.BoolVarP(&opts.flagSet.listGroupFlag, "list-group", "L", false, "list the groups. 隠しコマンド.")
 	flags.BoolVarP(&opts.flagSet.helpFlag, "help", "h", false, "ヘルプメッセージの表示.")
 	flags.BoolVarP(&opts.flagSet.versionFlag, "version", "v", false, "versionの表示.")
+	flags.BoolVarP(&completions, "generate-completions", "", false, "completionsを生成します.")
+	flags.MarkHidden("generate-completions")
 	return opts, flags
 }
 
@@ -107,6 +112,10 @@ parseOptions は、指定されたコマンド ライン引数からオプショ
 func parseOptions(args []string) (*options, []string, *yubsError) {
 	opts, flags := buildOptions(args)
 	flags.Parse(args[1:])
+	if completions{
+		fmt.Println("GenerateCompletion")
+		GenerateCompletion(flags)
+	}
 	if opts.flagSet.helpFlag {
 		fmt.Println(helpMessage(args))
 		return nil, nil, &yubsError{statusCode: 0, message: ""}
@@ -123,7 +132,6 @@ func parseOptions(args []string) (*options, []string, *yubsError) {
 
 func shortenEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
 	result, err := bitly.Shorten(config, url)
-	fmt.Println("main_1")
 	if err != nil {
 		return err
 	}
@@ -140,11 +148,13 @@ func deleteEach(bitly *yubs.Bitly, config *yubs.Config, url string) error {
 
 func listUrls(bitly *yubs.Bitly, config *yubs.Config) error {
 	fmt.Println("あなたのアカウントの短縮URLは")
+	//f, err := os.Create("ShortURL_list.txt")
 	urls, err := bitly.List(config)
 	if err != nil {
 		return err
 	}
 	for _, url := range urls {
+		//count, err := f.Write(url)
 		fmt.Println(url)
 	}
 	return nil
@@ -152,7 +162,6 @@ func listUrls(bitly *yubs.Bitly, config *yubs.Config) error {
 
 func listGroups(bitly *yubs.Bitly, config *yubs.Config) error {
 	groups, err := bitly.Groups(config)
-	fmt.Println("main_4")
 	if err != nil {
 		return err
 	}
