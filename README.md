@@ -22,7 +22,7 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 
      Usage yubs [OPTION] [URL]  
      OPTION:
-     -t, --token　[TOKEN]    bitlyのアクセストークンを指定する。
+     -t, --token　[TOKEN]    アクセストークンを入力してください。
      -h, --help            ヘルプメッセージを表示する。
      -v, --version         versionを表示する。
      ARGUMENT
