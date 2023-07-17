@@ -31,6 +31,8 @@ Bit.lyは入力したURLを短縮URLにできるWebapiのサービスである�
 
 
 # インストール方法
+
+     brew tap SOICHIRO-NISHIO-github/tap
      brew install yubs 
    
 # このプロジェクトについて
